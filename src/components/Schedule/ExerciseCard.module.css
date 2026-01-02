@@ -1,0 +1,60 @@
+.card {
+  border-radius: 11px;
+  /* padding: 2.4rem 3.2rem; */
+  overflow: hidden;
+  border: 1px solid #adb5bd;
+  box-shadow: 0 0.8rem 1.6rem rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 1.2rem 2.4rem rgba(0, 0, 0, 0.12);
+}
+
+.cardTitle {
+  font-size: 2rem;
+  background-color: #343a40;
+  padding: 1.6rem 2.4rem;
+  text-align: center;
+}
+
+.cardContent {
+  padding: 2.4rem 3.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  background-color: #ced4da;
+  color: #343a40;
+  font-size: 1.8rem;
+}
+
+.workoutCompleted {
+  background-color: #b2f2bb;
+}
+
+.workoutCompleted .cardTitle {
+  background-color: #69db7c;
+  color: #1b4332;
+}
+
+.workoutCompleted .cardContent {
+  opacity: 0.7;
+}
+
+.btn {
+  padding: 1.2rem 1.8rem;
+  border: 1px solid #343a40;
+  border-radius: 9px;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-weight: 600;
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn:hover {
+  background-color: #c4c9cf; /*Darker version of #ced4da 5%*/
+}

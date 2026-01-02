@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import styles from "./Header.module.css";
 
-const Header = function () {
+const Header = () => {
   const getLinkClass = ({ isActive }) =>
     `${styles.linkItem} ${isActive ? styles.active : ""}`;
 

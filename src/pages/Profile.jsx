@@ -1,4 +1,4 @@
-const Profile = function () {
+const Profile = () => {
   return <div>Profile</div>;
 };
 

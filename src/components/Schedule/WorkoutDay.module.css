@@ -1,0 +1,23 @@
+.section {
+  margin-top: 3.2rem;
+}
+
+.h3 {
+  text-align: center;
+  font-size: 3.2rem;
+  margin-bottom: 1.8rem;
+}
+
+.p {
+  text-align: center;
+  font-size: 2.4rem;
+  margin-bottom: 1.2rem;
+}
+
+.workouts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(28rem, 1fr));
+  row-gap: 3.2rem;
+  align-items: center;
+  justify-items: center;
+}

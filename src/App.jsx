@@ -1,7 +1,7 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import AppLayout from "./layout/AppLayout";
 import Home from "./pages/Home";
-import Schedule from "./pages/Schedule";
+import Schedule from "./pages/Schedule/Schedule";
 import Archive from "./pages/Archive";
 import Profile from "./pages/Profile";
 
@@ -30,7 +30,7 @@ const router = createBrowserRouter([
   },
 ]);
 
-const App = function () {
+const App = () => {
   return <RouterProvider router={router} />;
 };
 

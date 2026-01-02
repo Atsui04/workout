@@ -1,6 +1,6 @@
 import styles from "./Footer.module.css";
 
-const Footer = function () {
+const Footer = () => {
   const date = new Date();
   const year = date.getFullYear();
 

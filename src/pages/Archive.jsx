@@ -1,4 +1,4 @@
-const Archive = function () {
+const Archive = () => {
   return <div>Archive</div>;
 };
 
