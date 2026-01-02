@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import Schedule from "./pages/Schedule/Schedule";
 import Archive from "./pages/Archive";
 import Profile from "./pages/Profile";
+import Plan from "./pages/Plan";
 
 const router = createBrowserRouter([
   {
@@ -15,16 +16,20 @@ const router = createBrowserRouter([
         element: <Schedule />,
       },
       {
-        path: "/home",
+        path: "home",
         element: <Home />,
       },
       {
-        path: "/archive",
+        path: "archive",
         element: <Archive />,
       },
       {
-        path: "/profile",
+        path: "profile",
         element: <Profile />,
+      },
+      {
+        path: "plan",
+        element: <Plan />,
       },
     ],
   },

@@ -16,6 +16,9 @@ const Header = () => {
           <NavLink to="/" className={getLinkClass}>
             Schedule
           </NavLink>
+          <NavLink to="/plan" className={getLinkClass}>
+            Plan
+          </NavLink>
           <NavLink to="/archive" className={getLinkClass}>
             Archive
           </NavLink>

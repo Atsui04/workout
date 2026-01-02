@@ -75,7 +75,8 @@ const Schedule = () => {
 
   return (
     <div>
-      <h2 className={styles.h2}>Your Schedule for this week</h2>
+      <h2 className={styles.h2}>Your Schedule for today</h2>
+
       <WorkoutDay
         day={schedule.day}
         splitType={schedule.splitType}
