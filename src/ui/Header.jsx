@@ -9,7 +9,11 @@ const Header = () => {
     <header className={styles.header}>
       <nav className={styles.nav}>
         <NavLink to="/home" className={getLinkClass}>
-          Logo
+          <img
+            className={styles.logo}
+            src="../src/assets/logo/MyWorkout-logo-transparent-v2.png"
+            alt="MyWorkout logo"
+          />
         </NavLink>
 
         <div className={styles.links}>

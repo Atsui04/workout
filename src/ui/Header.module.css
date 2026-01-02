@@ -22,6 +22,15 @@
   color: inherit;
 }
 
+.logo {
+  width: 12.8rem;
+  transition: opacity 0.2s ease;
+}
+
+.logo:hover {
+  opacity: 0.8;
+}
+
 .active {
   color: #555;
 }
