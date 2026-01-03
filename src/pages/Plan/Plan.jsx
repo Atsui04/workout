@@ -1,21 +1,45 @@
-import { useState } from "react";
+import { useReducer, useState } from "react";
 import TabList from "../../components/Plan/Tabs/TabList";
 import TabPanel from "../../components/Plan/Tabs/TabPanel";
 import styles from "./Plan.module.css";
+import { DAYS, today } from "../../constants/days";
+import CreateWorkout from "./../../components/Plan/Workouts/CreateWorkout";
+import EmptyWorkouts from "./../../components/Plan/Workouts/EmptyWorkouts";
 
-const days = [
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-];
-const today = days[new Date().getDay()];
+const initialState = {
+  mode: "empty",
+  exercises: [],
+};
+
+function reducer(state, action) {
+  switch (action.type) {
+    // To see form for creating workout
+    case "CREATE_WORKOUT":
+      return {
+        ...state,
+        mode: "creating",
+      };
+    // To see a text "Rest day"
+    case "REST_DAY":
+      return {
+        ...state,
+        mode: "rest",
+      };
+    // If there's no workouts or rest day
+    case "EMPTY":
+      return {
+        ...state,
+        mode: "empty",
+      };
+
+    default:
+      throw new Error("Unknown action");
+  }
+}
 
 const Plan = () => {
   const [activeDay, setActiveDay] = useState(today);
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   const handleSelectedDay = (day) => {
     setActiveDay(day);
@@ -25,11 +49,16 @@ const Plan = () => {
     <div>
       <h2 className={styles.h2}>Plan your workouts for a week</h2>
       <TabList
-        days={days}
+        days={DAYS}
         activeDay={activeDay}
         onSelectedDay={handleSelectedDay}
       />
-      <TabPanel activeDay={activeDay} />
+      <TabPanel>
+        {state.mode === "empty" && (
+          <EmptyWorkouts activeDay={activeDay} dispatch={dispatch} />
+        )}
+        {state.mode === "creating" && <CreateWorkout dispatch={dispatch} />}
+      </TabPanel>
     </div>
   );
 };

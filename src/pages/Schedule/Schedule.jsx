@@ -1,19 +1,7 @@
 import styles from "./Schedule.module.css";
 import WorkoutDay from "./../../components/Schedule/WorkoutDay";
 import { useState } from "react";
-
-const days = [
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-  "Sunday",
-];
-
-const todayNum = new Date().getDay();
-const today = days[todayNum - 1];
+import { DAYS, today } from "../../constants/days";
 
 // Test date
 const testObj = {
