@@ -31,6 +31,12 @@ function reducer(state, action) {
         ...state,
         mode: "empty",
       };
+    // If there's at least 1 exercise
+    case "SUBMIT_EXERCISE":
+      return {
+        ...state,
+        mode: "workouts",
+      };
 
     default:
       throw new Error("Unknown action");

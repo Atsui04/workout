@@ -1,4 +1,3 @@
-import Button from "../../../ui/Button/Button";
 import styles from "./TabPanel.module.css";
 
 const TabPanel = ({ children }) => {
