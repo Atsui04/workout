@@ -8,7 +8,7 @@ import FormItem from "./FormItem/FormItem";
 import styles from "./CreateWorkout.module.css";
 import { formReducer, initialState, validate } from "./formReducer";
 
-const CreateWorkout = ({ dispatch }) => {
+const CreateWorkout = ({ dispatch, activeDay }) => {
   const [formState, formDispatch] = useReducer(formReducer, initialState);
 
   const handleSubmit = function (e) {
@@ -36,7 +36,7 @@ const CreateWorkout = ({ dispatch }) => {
     // If everything is okay
     console.log("Workout data:", workout);
 
-    dispatch({ type: "SUBMIT_EXERCISE", payload: workout });
+    dispatch({ type: "SUBMIT_EXERCISE", payload: workout, day: activeDay });
 
     formDispatch({ type: "form/reset" });
   };
@@ -121,7 +121,7 @@ const CreateWorkout = ({ dispatch }) => {
             size="lg"
             onClick={() => {
               formDispatch({ type: "form/reset" });
-              dispatch({ type: "EMPTY" });
+              dispatch({ type: "EMPTY", day: activeDay });
             }}
           >
             Cancel

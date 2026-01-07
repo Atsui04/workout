@@ -8,46 +8,89 @@ import EmptyWorkouts from "./../../components/Plan/Workouts/EmptyWorkouts";
 import WorkoutsList from "../../components/Plan/Workouts/WorkoutsList";
 
 const initialState = {
-  mode: "empty",
-  exercises: [],
+  Monday: {
+    mode: "empty",
+    exercises: [],
+  },
+  Tuesday: {
+    mode: "empty",
+    exercises: [],
+  },
+  Wednesday: {
+    mode: "empty",
+    exercises: [],
+  },
+  Thursday: {
+    mode: "empty",
+    exercises: [],
+  },
+  Friday: {
+    mode: "empty",
+    exercises: [],
+  },
+  Saturday: {
+    mode: "empty",
+    exercises: [],
+  },
+  Sunday: {
+    mode: "empty",
+    exercises: [],
+  },
 };
 
 function reducer(state, action) {
+  const dayState = state[action.day];
+
   switch (action.type) {
-    // To see form for creating workout
     case "CREATE_WORKOUT":
       return {
         ...state,
-        mode: "creating",
+        [action.day]: {
+          ...dayState,
+          mode: "creating",
+        },
       };
-    // To see a text "Rest day"
-    case "REST_DAY":
-      return {
-        ...state,
-        mode: "rest",
-      };
-    // If there's no workouts or rest day
-    case "EMPTY":
-      return {
-        ...state,
-        mode: "empty",
-      };
-    // If there's at least 1 exercise
+
     case "SUBMIT_EXERCISE":
       return {
         ...state,
-        mode: "workouts",
-        exercises: [...state.exercises, action.payload],
+        [action.day]: {
+          ...dayState,
+          mode: "workouts",
+          exercises: [...dayState.exercises, action.payload],
+        },
+      };
+
+    case "DELETE_EXERCISE":
+      return {
+        ...state,
+        [action.day]: {
+          ...dayState,
+          exercises: dayState.exercises.filter(
+            (ex) => ex.id !== action.payload
+          ),
+          mode: dayState.exercises.length === 1 ? "empty" : dayState.mode,
+        },
+      };
+
+    case "REST_DAY":
+      return {
+        ...state,
+        [action.day]: {
+          mode: "rest",
+          exercises: [],
+        },
       };
 
     default:
-      throw new Error("Unknown action");
+      return state;
   }
 }
 
 const Plan = () => {
   const [activeDay, setActiveDay] = useState(today);
   const [state, dispatch] = useReducer(reducer, initialState);
+  const dayState = state[activeDay];
 
   const handleSelectedDay = (day) => {
     setActiveDay(day);
@@ -62,13 +105,24 @@ const Plan = () => {
         onSelectedDay={handleSelectedDay}
       />
       <TabPanel>
-        {state.mode === "empty" && (
+        {dayState.mode === "empty" && (
           <EmptyWorkouts activeDay={activeDay} dispatch={dispatch} />
         )}
-        {state.mode === "creating" && <CreateWorkout dispatch={dispatch} />}
-        {state.mode === "workouts" && (
-          <WorkoutsList exercises={state.exercises} />
+
+        {dayState.mode === "creating" && (
+          <CreateWorkout dispatch={dispatch} activeDay={activeDay} />
         )}
+
+        {dayState.mode === "workouts" && (
+          <WorkoutsList
+            exercises={dayState.exercises}
+            mode="plan"
+            dispatch={dispatch}
+            activeDay={activeDay}
+          />
+        )}
+
+        {dayState.mode === "rest" && <p className={styles.rest}>Rest day 😴</p>}
       </TabPanel>
     </div>
   );

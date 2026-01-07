@@ -1,7 +1,6 @@
 .tabPanel {
   display: flex;
   flex-direction: column;
-  align-items: center;
   gap: 2.4rem;
   text-align: center;
   background-color: #ced4da;

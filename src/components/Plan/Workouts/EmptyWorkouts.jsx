@@ -9,10 +9,17 @@ const EmptyWorkouts = ({ activeDay, dispatch }) => {
         like to do?
       </p>
       <div className={styles.buttons}>
-        <Button onClick={() => dispatch({ type: "CREATE_WORKOUT" })}>
+        <Button
+          onClick={() => dispatch({ type: "CREATE_WORKOUT", day: activeDay })}
+        >
           Create Workout 💪
         </Button>
-        <Button variant="secondary">Rest Day 💤</Button>
+        <Button
+          variant="secondary"
+          onClick={() => dispatch({ type: "REST_DAY", day: activeDay })}
+        >
+          Rest Day 💤
+        </Button>
       </div>
     </>
   );

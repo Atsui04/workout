@@ -1,40 +1,59 @@
 .card {
   border-radius: 11px;
-  /* padding: 2.4rem 3.2rem; */
   overflow: hidden;
   border: 1px solid #adb5bd;
   box-shadow: 0 0.8rem 1.6rem rgba(0, 0, 0, 0.08);
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  max-width: 34rem;
+  width: 90%;
+  justify-self: center;
 }
 
 .card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 1.2rem 2.4rem rgba(0, 0, 0, 0.12);
+  transform: translateY(-1px);
+  box-shadow: 0 0.6rem 1.2rem rgba(0, 0, 0, 0.12);
 }
 
 .cardTitle {
-  font-size: 2rem;
-  background-color: #343a40;
-  padding: 1.6rem 2.4rem;
+  font-size: 1.8rem;
+  font-weight: 600;
+  background-color: #2f343a;
+  padding: 1.4rem 2.4rem;
   text-align: center;
+  letter-spacing: 0.3px;
 }
 
 .cardContent {
-  padding: 2.4rem 3.2rem;
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
-  background-color: #ced4da;
-  color: #343a40;
+  background-color: #dee2e6;
+  padding: 2rem 2.4rem;
   font-size: 1.8rem;
+  color: #343a40;
+  gap: 1rem;
+}
+
+.stat {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.stat span:first-child {
+  opacity: 0.65;
+}
+
+.stat span:last-child {
+  font-weight: 600;
 }
 
 .workoutCompleted {
-  background-color: #b2f2bb;
+  opacity: 0.85;
 }
 
 .workoutCompleted .cardTitle {
-  background-color: #69db7c;
+  background-color: #51cf66;
   color: #1b4332;
 }
 
@@ -49,6 +68,8 @@
   cursor: pointer;
   transition: all 0.3s;
   font-weight: 600;
+  margin: 0 auto;
+  margin-top: 1.2rem;
 }
 
 .btn:active {
@@ -57,4 +78,10 @@
 
 .btn:hover {
   background-color: #c4c9cf; /*Darker version of #ced4da 5%*/
+}
+
+.actions {
+  margin-top: auto;
+  display: flex;
+  justify-content: space-around;
 }

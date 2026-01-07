@@ -1,39 +1,62 @@
 import Button from "../../ui/Button/Button";
 import styles from "./ExerciseCard.module.css";
 
-const ExerciseCard = ({ exercise, onCompleted }) => {
+const ExerciseCard = ({
+  exercise,
+  onCompleted,
+  mode = "schedule",
+  onDelete,
+}) => {
   const { id, name, sets, reps, weights, completed } = exercise;
-  // Check if there more than 1 reps
-  const repsCount = reps.length;
-  console.log(repsCount);
 
   return (
     <div
       className={`${styles.card} ${completed ? styles.workoutCompleted : ""}`}
     >
       <p className={styles.cardTitle}>{name}</p>
+
       <div className={styles.cardContent}>
-        <p>Sets: {sets}</p>
+        <p className={styles.stat}>
+          <span>Sets: </span>
+          <span>{sets}</span>
+        </p>
+        <p className={styles.stat}>
+          <span>Reps: </span> <span>{reps}</span>
+        </p>
+        <p className={styles.stat}>
+          <span>Weights: </span> <span>{weights}</span>
+        </p>
 
-        {repsCount > 1 ? (
-          reps.map((rep, i) => (
-            <p key={i}>
-              Rep {i + 1}: {rep} × {weights[i]} kg
-            </p>
-          ))
-        ) : (
-          <p>
-            Rep: {reps} × {weights} kg
-          </p>
+        {/* Schedule mode */}
+        {mode === "schedule" &&
+          (!completed ? (
+            <Button
+              className={styles.btn}
+              size="lg"
+              onClick={() => onCompleted(id)}
+            >
+              Completed ✅
+            </Button>
+          ) : (
+            <Button
+              className={styles.btn}
+              size="lg"
+              variant="secondary"
+              onClick={() => onCompleted(id)}
+            >
+              Cancel ❌
+            </Button>
+          ))}
+
+        {/* Plan mode */}
+        {mode === "plan" && (
+          <div className={styles.actions}>
+            <Button variant="secondary">Edit 📝</Button>
+            <Button variant="primary" onClick={() => onDelete(id)}>
+              Delete ❌
+            </Button>
+          </div>
         )}
-
-        <Button
-          className={styles.btn}
-          size="lg"
-          onClick={() => onCompleted(id)}
-        >
-          {completed ? "Cancel ❌" : "Completed ✅"}
-        </Button>
       </div>
     </div>
   );

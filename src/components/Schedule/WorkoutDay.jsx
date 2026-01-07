@@ -10,9 +10,11 @@ const WorkoutDay = ({ day, splitType, exercises, onCompleted }) => {
 
   return (
     <section className={styles.section}>
+      {/* h3 shows current day */}
       <h3 className={styles.h3}>{day}</h3>
       <p className={styles.p}>{splitType}</p>
 
+      {/* If exercise isn't completed it will display progress bar */}
       {!isCompleted && (
         <div className={styles.progressBar}>
           <label htmlFor="bar">Workouts completed: </label>
@@ -22,7 +24,7 @@ const WorkoutDay = ({ day, splitType, exercises, onCompleted }) => {
           </p>
         </div>
       )}
-      {/*  */}
+      {/* map for every exercise */}
       <div className={styles.workouts}>
         {exercises.map((exercise) => (
           <ExerciseCard
@@ -32,7 +34,7 @@ const WorkoutDay = ({ day, splitType, exercises, onCompleted }) => {
           />
         ))}
       </div>
-
+      {/* If the exercise is completed, the progress bar will be hidden and this div will be displayed */}
       {isCompleted && (
         <div className={styles.completedText}>
           <p>Workout completed 🎉</p>
